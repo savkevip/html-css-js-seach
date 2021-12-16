@@ -1,0 +1,23 @@
+{
+  "name": "html-css-js-search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savkevip/html-css-js-search.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/savkevip/html-css-js-search/issues"
+  },
+  "homepage": "https://github.com/savkevip/html-css-js-search#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}
