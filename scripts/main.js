@@ -3,39 +3,53 @@ const users = [
     { id: 2, name: "Klara Jovovic", age: 36 },
     { id: 3, name: "Milica Tesic", age: 17 },
     { id: 4, name: "Branko Kesic", age: 65 },
-]
-
-/*
-<tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-</tr>
-*/
+];
 
 const tBodyElement = document.getElementById("content");
+const searchInputElement = document.getElementById("searchTerm");
 
-users.forEach(user => {
-    const tr = document.createElement("tr");
+searchInputElement.addEventListener('input', (event) => {
+    const searchTerm = event.target.value;
 
-    const th = document.createElement("th");
-    th.setAttribute("scope", "row");
-    const thText = document.createTextNode(user.id);  
-    th.appendChild(thText); 
+    const filtered = users.filter(user => {
+        const resultName = user.name.toLowerCase();
+        const stName = searchTerm.toLowerCase();
 
-    const tdFullName = document.createElement("td");
-    const tdFullNameText = document.createTextNode(user.name);  
-    tdFullName.appendChild(tdFullNameText); 
+        const resultAge = JSON.stringify(user.age);
+        const stAge = searchTerm.toLowerCase();
+        
+        return resultName.includes(stName) || resultAge.includes(stAge);
+    });
 
-    const tdAge = document.createElement("td");
-    const tdAgeText = document.createTextNode(user.age);  
-    tdAge.appendChild(tdAgeText); 
+    // this remove all children elements in tBody
+    tBodyElement.innerHTML = "";
 
-    tr.appendChild(th);
-    tr.appendChild(tdFullName);
-    tr.appendChild(tdAge);
+    renderTableWithusers(filtered);
+})
+
+const renderTableWithusers = (listOfUsers) => {
+    listOfUsers.forEach(user => {
+        const tr = document.createElement("tr");
     
-    tBodyElement.appendChild(tr);
-});
+        const th = document.createElement("th");
+        th.setAttribute("scope", "row");
+        const thText = document.createTextNode(user.id);  
+        th.appendChild(thText); 
+    
+        const tdFullName = document.createElement("td");
+        const tdFullNameText = document.createTextNode(user.name);  
+        tdFullName.appendChild(tdFullNameText); 
+    
+        const tdAge = document.createElement("td");
+        const tdAgeText = document.createTextNode(user.age);  
+        tdAge.appendChild(tdAgeText); 
+    
+        tr.appendChild(th);
+        tr.appendChild(tdFullName);
+        tr.appendChild(tdAge);
+        
+        tBodyElement.appendChild(tr);
+    });
+}
 
+renderTableWithusers(users);
